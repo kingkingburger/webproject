@@ -1,0 +1,44 @@
+package product;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class ProductDAO {
+	
+	private Connection conn;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	
+	public ProductDAO() {
+		try {
+			String dbURL = "jdbc:mysql://localhost:3306/BBS";
+			String dbID = "root";
+			String dbpassword = "1234";
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(dbURL, dbID, dbpassword);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int login(int product_num, String product_name) {
+		String SQL = "SELECT product_name FROM product where product_num =?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, product_name);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+//				if (rs.getString(1).equals) {
+//					
+//				}
+			}
+			return -1; //아이다가 없음
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -2; //데이터베이스 오류
+	}
+	
+}

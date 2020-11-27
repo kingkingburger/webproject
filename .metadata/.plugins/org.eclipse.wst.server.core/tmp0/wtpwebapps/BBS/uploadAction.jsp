@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="product.ProductDAO" %>
+<%@ page import="java.io.File" %>
+<%@ page import ="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="java.io.PrintWriter" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+
+<jsp:useBean id="product" class="product.Product" scope="page" />
+<jsp:setProperty name="product" property="product_num" />
+<jsp:setProperty name="product" property="product_value" />
+<jsp:setProperty name="product" property="product_name" />
+<jsp:setProperty name="product" property="product_amount" />
+<jsp:setProperty name="product" property="product_categoly" />
+<jsp:setProperty name="product" property="product_image" />
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP 파일 업로드</title>
+</head>
+<body>
+
+	<%
+	ProductDAO p = new ProductDAO();
+    int result = p.upload(product.getProduct_num(),product.getProduct_name(),
+    		product.getProduct_value(),product.getProduct_name(),product.getProduct_amount(),product.getProduct_categoly());
+    
+        if(result == -1){ // 글쓰기에 실패했을 경우
+            PrintWriter script = response.getWriter(); //하나의 스크립트 문장을 넣을 수 있도록.
+            script.println("<script>");
+            script.println("alert('글쓰기에 실패했습니다.')");
+            script.println("history.back()");
+            script.println("</script>");
+        }
+        
+        
+	%>
+	<div class="container">
+		<tr>
+           <td><%=product.getProduct_name() %></td>
+           <td><%=product.getProduct_value() %></td>
+           <td><%=product.getProduct_name() %></td>
+           <td><%=product.getProduct_amount() %></td>
+           <td><%=product.getProduct_categoly() %></td>
+       </tr>
+	</div>
+       
+	
+
+</body>
+</html>

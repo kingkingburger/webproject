@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="product.ProductDAO" %>
+<%@ page import="java.io.File" %>
+<%@ page import ="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+
+<jsp:useBean id="product" class="product.Product" scope="page" />
+<jsp:setProperty name="product" property="product_num" />
+<jsp:setProperty name="product" property="product_value" />
+<jsp:setProperty name="product" property="product_amount" />
+<jsp:setProperty name="product" property="product_categoly" />
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP 파일 업로드</title>
+</head>
+<body>
+
+	<%
+		String directory = application.getRealPath("/upload/");
+		int maxSize = 1024* 1024 * 100; //최대 파일 100MB
+		String encoding = "UTF-8";
+		
+		MultipartRequest multipartRequest
+		= new MultipartRequest(request, directory, maxSize, encoding,
+				new DefaultFileRenamePolicy()); //요청한 파일에 대하여 디렉터에 저장 경로, 저장공간, 인코딩 세팅
+	
+		String fileName = multipartRequest.getOriginalFileName("product_image"); //form action에서 보낸 파일을 받아 변수에 저장
+		//String fileRealName =multipartRequest.getFilesystemName("product_image"); //실제로 서버에 업로드된 파일 시스템 이름을 가지고온다.
+		
+		//product.setProduct_image(fileRealName);
+		product.setProduct_name(fileName);
+
+		if ( product.getProduct_num() == 0 || product.getProduct_amount() == 0 || product.getProduct_categoly() == null
+				|| product.getProduct_image() == 0 || product.getProduct_name() == null){
+			out.println("<script>");
+			out.println("alert('입력이 안 된 사항이 있습니다.')");
+			out.println("</script>");
+		}
+		else{
+			ProductDAO productDAO = new ProductDAO(); //인스턴스생성
+			int result = productDAO.upload(product);
+		
+		if(result == -1){ // 아이디가 기본키기. 중복되면 오류.
+			out.println("<script>");
+			out.println("alert('등록 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+
+		//가입성공
+		else {
+			out.println("<script>");
+			out.println("location.href = 'ShopMallMain.jsp'");
+			out.println("</script>");
+		}
+	}
+
+
+	%>
+	<%=product.getProduct_num() %>
+	<%=product.getProduct_image() %>
+	
+</body>
+</html>

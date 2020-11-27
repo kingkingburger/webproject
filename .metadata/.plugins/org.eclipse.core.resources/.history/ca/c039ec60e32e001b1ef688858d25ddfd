@@ -1,0 +1,39 @@
+package product;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class ProductDAO {
+	
+	private Connection conn;
+	
+	public ProductDAO() {
+		try {
+			String dbURL = "jdbc:mysql://localhost:3306/prototype?serverTimezone=Asia/Seoul";
+			String dbID = "root";			
+			String dbPassword = "1234";
+			Class.forName("com.mysql.jdbc.Driver"); //
+			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);	
+		} catch (Exception e) {
+			e.printStackTrace(); //
+		}
+	}
+	public int upload(Product product) {
+		String SQL = "INSERT INTO PRODUCT VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, product.getProduct_num());
+			pstmt.setString(2, product.getProduct_name());
+			pstmt.setInt(3, product.getProduct_value());
+			pstmt.setInt(4, product.getProduct_image());
+			pstmt.setString(5, product.getProduct_amount());
+			pstmt.setString(6, product.getProduct_categoly() );
+			return pstmt.executeUpdate(); //
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+		
+}

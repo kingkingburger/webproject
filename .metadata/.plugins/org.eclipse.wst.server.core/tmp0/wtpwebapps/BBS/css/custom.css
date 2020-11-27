@@ -1,0 +1,10 @@
+@imoprt url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@imoprt url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+* {
+	font-family : 'Nanum Gothic';
+}
+
+h1{
+	font-family : "Hanna";
+}
