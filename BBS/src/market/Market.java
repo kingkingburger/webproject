@@ -5,7 +5,7 @@ public class Market {
 	private String  market_name;
 	private String  market_address;
 	private String  market_categoly;
-	private int product_num;
+
 	
 	public int getMarket_num() {
 		return market_num;
@@ -31,12 +31,7 @@ public class Market {
 	public void setMarket_categoly(String market_categoly) {
 		this.market_categoly = market_categoly;
 	}
-	public int getProduct_num() {
-		return product_num;
-	}
-	public void setProduct_num(int product_num) {
-		this.product_num = product_num;
-	}
+
 	
 }
 
