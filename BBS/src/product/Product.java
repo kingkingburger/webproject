@@ -8,6 +8,7 @@ public class Product {
 	private String product_image;
 	private int product_amount;
 	private String product_categoly;
+	private int market_num;
 	public int getProduct_num() {
 		return product_num;
 	}
@@ -44,6 +45,14 @@ public class Product {
 	public void setProduct_categoly(String product_categoly) {
 		this.product_categoly = product_categoly;
 	}
+	public int getMarket_num() {
+		return market_num;
+	}
+	public void setMarket_num(int market_num) {
+		this.market_num = market_num;
+	}
+	
+	
 
 	
 	

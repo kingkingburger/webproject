@@ -67,7 +67,7 @@
 			<!-- 점보트론 -->
 			<div class="jumbotron" style="padding-top: 20px;">
 				<!-- 로그인 정보를 숨기면서 전송post -->
-				<form  action="uploadAction.jsp" enctype="multipart/form-data" accept=".jpg,.jpeg,.png,.gif">
+				<form method="post" action="uploadAction.jsp" enctype="multipart/form-data" >
 					<h3 style="text-align: center;"><a href="ShopMallMain.jsp">물품추가</a></h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="물품이름"
@@ -83,6 +83,14 @@
 						<input type="text" class="form-control" placeholder="재고량"
 							name="product_amount" >
 					</div>
+
+
+					<div class="form-group">
+						<input type="file" class="form-control" placeholder="이미지"
+							name="product_image" >
+					</div>
+
+
 
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="카테고리"

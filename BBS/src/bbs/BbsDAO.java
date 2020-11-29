@@ -17,7 +17,7 @@ public class BbsDAO {
 			 String dbURL = "jdbc:mysql://localhost:3306/BBS?serverTimezone=Asia/Seoul";
 
 			   Class.forName("com.mysql.jdbc.Driver");
-			   conn = DriverManager.getConnection(dbURL, "root", "1234");
+			   conn = DriverManager.getConnection(dbURL, "root", "kang0320");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -16,7 +16,7 @@ public MarketDAO() {
 	   String dbURL = "jdbc:mysql://localhost:3306/BBS?serverTimezone=Asia/Seoul";
 
 	   Class.forName("com.mysql.jdbc.Driver");
-	   conn = DriverManager.getConnection(dbURL, "root", "1234"); //데이터베이스 서버 접근
+	   conn = DriverManager.getConnection(dbURL, "root", "kang0320"); //데이터베이스 서버 접근
 
 	  } catch (Exception e) {
 	   e.printStackTrace();

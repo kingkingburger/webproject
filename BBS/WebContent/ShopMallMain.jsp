@@ -1,9 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="product.ProductDAO" %>
+<%@ page import="product.Product" %>
+<%@ page import="java.util.ArrayList" %>
 <%
-String []img= new String[0];
-String []name= new String[0];
-String []price=new String[0];
+
+
+ProductDAO product = new ProductDAO();
+ArrayList<Product> list = product.getList();
+
+int count = list.size();
+
+String []img= new String[count]; 
+String []name= new String[count]; 
+int []price= new int[count];
+
+for (int i =0 ; i<count ; i++) {
+	
+	img[i] = list.get(i).getProduct_image();
+	name[i] = list.get(i).getProduct_name();
+	price[i] = list.get(i).getProduct_value();
+}
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -128,7 +147,7 @@ function fnproduct() {
 					//물품 나타는 곳
 					out.println("<tr align='center'>");
 						out.println("<td>");
-							out.println("<img src = 'images/" + img[i] + "' width='150' height='150' />");
+							out.println("<img src = 'upload/" + img[i] + "' width='150' height='150' />");
 						out.println("</td>");
 					out.println("</tr>");
 					
