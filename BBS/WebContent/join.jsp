@@ -63,22 +63,30 @@
 							name="userName" maxlength="20">
 					</div>
 
+
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="주소(도,특별시)"
+							name="userAddress1" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="주소(시,군,구)"
+							name="userAddress2" maxlength="20">
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="주소(동,읍,면)"
+							name="userAddress3" maxlength="20">
+					</div>
 					<div class="form-group" style="text-align: center;">
 						<div class="btn-group" data-toggle="buttons">
 							<label class="btn btn-primary active"> <input
 								type="radio" name="userType" autocomplete="off" value="소비자"
 								checked>소비자
 							</label> <label class="btn btn-primary"> <input type="radio"
-								name="userType" autocomplete="off" value="여자" >판매자
+								name="userType" autocomplete="off" value="판매자" >판매자
 							</label>
 						</div>
 					</div>
-
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="주소"
-							name="userAddress" maxlength="50">
-					</div>
-
 					<input type="submit" class="btn btn-primary form-control"
 						value="회원가입">
 

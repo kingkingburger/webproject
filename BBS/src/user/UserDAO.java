@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement; 
 import java.sql.ResultSet; ////정보 담는 객체
 
+import bbs.Bbs;
+
 public class UserDAO {
 
  private Connection conn;
@@ -16,7 +18,7 @@ public class UserDAO {
    String dbURL = "jdbc:mysql://localhost:3306/BBS?serverTimezone=Asia/Seoul";
 
    Class.forName("com.mysql.jdbc.Driver");
-   conn = DriverManager.getConnection(dbURL, "root", "kang0320"); //데이터베이스 서버 접근
+   conn = DriverManager.getConnection(dbURL, "root", "1234"); //데이터베이스 서버 접근
 
   } catch (Exception e) {
    e.printStackTrace();
@@ -42,18 +44,47 @@ public class UserDAO {
   return -2; // 데이터 베이스 오류
  }
  public int join(User user) {
-		String SQL = "INSERT INTO USER VALUES (?,?,?,?,?)"; //값 삽입
+		String SQL = "INSERT INTO USER VALUES (?,?,?,?,?,?,?,?)"; //값 삽입
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, user.getUserID());
 			pstmt.setString(2, user.getUserPassword());
 			pstmt.setString(3, user.getUserName());
 			pstmt.setString(4, user.getUserType());
-			pstmt.setString(5, user.getUserAddress());
+			pstmt.setString(5, user.getUserAddress1());
+			pstmt.setString(6, user.getUserAddress2());
+			pstmt.setString(7, user.getUserAddress3());
+			pstmt.setInt(8, 1);
+
 			return pstmt.executeUpdate(); //업데이트 결과 반환
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return -1; // DB 오류
 	}
+	public User getUser(String UserID) {
+		String sql = "select * from user where UserID = ?";
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, UserID);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserType(rs.getString(4));
+				user.setUserAddress1(rs.getString(5));
+				user.setUserAddress2(rs.getString(6));
+				user.setUserAddress3(rs.getString(7));
+				user.setUserAvailable(rs.getInt(8));							
+				return user;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+ 
 }

@@ -9,6 +9,7 @@ public class Product {
 	private int product_amount;
 	private String product_categoly;
 	private int market_num;
+	private int product_available;
 	public int getProduct_num() {
 		return product_num;
 	}
@@ -51,10 +52,12 @@ public class Product {
 	public void setMarket_num(int market_num) {
 		this.market_num = market_num;
 	}
-	
-	
+	public int getProduct_available() {
+		return product_available;
+	}
+	public void setProduct_available(int product_available) {
+		this.product_available = product_available;
+	}
 
-	
-	
-	
+
 }

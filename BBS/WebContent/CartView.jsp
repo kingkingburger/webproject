@@ -7,6 +7,8 @@
 request.setCharacterEncoding("utf-8");
 ArrayList<CartDTO> cart = null;
 Object obj = session.getAttribute("cart");	//세션 객체에서 cart 값을 가져온다.
+          
+
 if(obj == null) {	//세션 정보가 없으면 배열을 생성 : 주문한 제품이 없다
 	cart = new ArrayList<CartDTO>();	
 } else {			//세션 정보가 있으면 강제로 캐스팅 : 주문한 제품이 있다
@@ -27,8 +29,8 @@ function fnClear(){
 		location.href = "CartClear.jsp";	
 	}
 }
-function fnGo(){
-	location.href = "ShopMallMain.jsp";
+function fnGo(market_num, market_categoly){
+	location.href = "ShopMallMain.jsp?market_num=" + market_num + "&market_categoly=" + market_categoly;
 }
 </script>
 </head>
@@ -70,7 +72,10 @@ function fnGo(){
 			out.println("<td colspan= '4'>");
 				out.println("<input type='button' value='결제하기' onclick='fnPay()' />");
 				out.println("<input type='button' value='장바구니 비우기' onclick='fnClear()' />");
-				out.println("<input type='button' value='쇼핑 계속하기' onclick='fnGo()' />");
+				String market_num = request.getParameter("market_num");
+				String market_categoly = request.getParameter("market_categoly");
+				out.println("<input type='button' value='쇼핑 계속하기' onclick='fnGo(\"" + market_num + "\", \"" + market_categoly + "\")' />");
+			
 			out.println("</td>");
 			out.println("<td>");
 			out.println(df.format(totalSum));

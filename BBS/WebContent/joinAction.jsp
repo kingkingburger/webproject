@@ -11,7 +11,9 @@
 <jsp:setProperty name="user" property="userPassword" /> 
 <jsp:setProperty name="user" property="userName" />
 <jsp:setProperty name="user" property="userType" />
-<jsp:setProperty name="user" property="userAddress" />
+<jsp:setProperty name="user" property="userAddress1" />
+<jsp:setProperty name="user" property="userAddress2" />
+<jsp:setProperty name="user" property="userAddress3" />
 
 
 <!DOCTYPE html>
@@ -38,7 +40,7 @@
 
 
 		if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null
-			|| user.getUserType() == null || user.getUserAddress() == null){
+			|| user.getUserType() == null || user.getUserAddress1() == null || user.getUserAddress2() == null || user.getUserAddress3() == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다.')");
@@ -59,6 +61,7 @@
 				else {
 				
 					session.setAttribute("userID",user.getUserID());
+
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("location.href = 'main.jsp'");

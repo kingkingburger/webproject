@@ -17,6 +17,8 @@
         userID = (String)session.getAttribute("userID");
     }
 %>
+
+
     <nav class ="navbar navbar-default">
         <div class="navbar-header"> <!-- 홈페이지의 로고 -->
             <button type="button" class="navbar-toggle collapsed"

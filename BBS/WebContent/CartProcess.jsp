@@ -35,4 +35,4 @@ if(pos == -1) {
 session.setAttribute("cart", cart);
 %>
 
-<script>alert("장바구니에 담았습니다.test"); location.href = "ShopMallMain.jsp"</script>
+<script>alert("장바구니에 담았습니다."); history.back();</script>

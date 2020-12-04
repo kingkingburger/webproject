@@ -8,7 +8,7 @@
 <jsp:useBean id="user" class="user.User" scope="page" />
 <jsp:setPropertyname="user" property="userID" />
 <jsp:setPropertyname="user" property="userPassword" />
-<jsp:setPropertyname="user" property="userType" />
+
 
 
 <!DOCTYPE html>
